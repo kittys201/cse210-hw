@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+
 public class Journal
 {
     public List<Entry> Entries { get; set; } = new List<Entry>();
 
+   
     public void NewEntry()
     {
         Entry userEntry = new Entry();
@@ -25,31 +28,53 @@ public class Journal
         }
     }
 
+   
     public void LoadEntries(string filename)
     {
-        Entries.Clear();
+        Entries.Clear(); 
 
-        if (filename.EndsWith(".json"))
+        if (filename.EndsWith(".csv"))
         {
-            string jsonData = File.ReadAllText(filename);
-            Entries = JsonConvert.DeserializeObject<List<Entry>>(jsonData);
+            string[] lines = File.ReadAllLines(filename);
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split(",");
+                string date = parts[0];
+                string prompt = parts[1];
+                string response = parts[2];
+
+                Entry loadedEntry = new Entry
+                {
+                    Date = date,
+                    Prompt = prompt,
+                    Response = response
+                };
+
+                Entries.Add(loadedEntry);
+            }
         }
         else
         {
-            // Load from another format if needed
+            // other format
         }
     }
 
+    
     public void SaveEntries(string filename)
     {
-        if (filename.EndsWith(".json"))
+        using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            string jsonData = JsonConvert.SerializeObject(Entries, Formatting.Indented);
-            File.WriteAllText(filename, jsonData);
-        }
-        else
-        {
-            // Save in another format if needed
+            if (filename.EndsWith(".csv"))
+            {
+                foreach (Entry entry in Entries)
+                {
+                    outputFile.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
+                }
+            }
+            else
+            {
+                // ###
+            }
         }
     }
 }

@@ -1,7 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
+
+/* Exceeding requirements 
+Attempted to Improve the process of saving and loading to 
+save as a .csv file that could be opened in Excel (make sure to 
+account for quotation marks and commas correctly in your 
+ content.
+ */
+
 
 class Program
 {
@@ -48,7 +55,7 @@ class Program
                     break;
                 case 5:
                     running = false;
-                    Console.WriteLine("Thank you. Have a nice day!");
+                    Console.WriteLine("Thank you. See you next day!");
                     Console.WriteLine();
                     break;
                 default:
