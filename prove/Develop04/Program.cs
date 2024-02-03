@@ -1,6 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+/*
+This program is a mindfulness program that offers three different activities to help users relax, reflect, and create lists. The activities are represented by the classes BreathingActivity, ReflectionActivity, and ListingActivity, all inheriting from the abstract class Activity.
+
+Each activity has a starting message that prompts the user for the activity duration in seconds. Then, specific actions are executed for each activity.
+
+- BreathingActivity guides the user through a breathing exercise, alternating between inhaling and exhaling for the specified duration.
+- ReflectionActivity prompts the user to reflect on a past experience, displaying a random question followed by a series of additional questions.
+- ListingActivity encourages the user to make a list on a specific topic, showing a random prompt and then collecting a list of items entered by the user.
+
+The main program (Program) provides a menu of options for the user to choose a specific activity, creates an instance of the selected activity, and runs it. The main loop allows the user to repeat the experience or exit the program.
+*/
 class Program
 {
     static void Main(string[] args)
